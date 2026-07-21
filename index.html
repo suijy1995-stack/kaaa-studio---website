@@ -2034,6 +2034,77 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
   color: var(--c-mid);
 }
 
+/* ═══ PLACE HERO (opens Spaces for Practice) ═══ */
+.place-hero { margin-bottom: 96px; }
+.place-hero-photo {
+  aspect-ratio: 16 / 7;
+  background: var(--c-surface);
+  margin: 0 calc(-1 * var(--page-pad)) 24px;
+  display: block;
+}
+.place-hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.place-hero-caption {
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 300;
+  color: var(--c-mid);
+  max-width: 480px;
+}
+
+/* ═══ SPACES FOR PRACTICE (overview / Place page) ═══ */
+.spaces-block {
+  border-top: 0.5px solid var(--c-rule-md);
+  padding-top: 56px;
+}
+.spaces-eyebrow {
+  font-family: var(--f-serif);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 300;
+  color: var(--c-ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 72px;
+}
+.space-entry { margin-bottom: 96px; }
+.space-entry:last-child { margin-bottom: 0; }
+.space-head { margin-bottom: 28px; }
+.space-photo {
+  aspect-ratio: 3 / 2;
+  background: var(--c-surface);
+  margin: 0 calc(-1 * var(--page-pad)) 24px;
+  display: block;
+}
+.space-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.space-caption { max-width: 480px; }
+.space-num {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--c-light);
+  margin-bottom: 8px;
+}
+.space-name {
+  font-family: var(--f-serif);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+}
+.space-line-en {
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 300;
+  color: var(--c-mid);
+  margin-bottom: 4px;
+}
+.space-line-jp {
+  font-size: 12px;
+  line-height: 1.65;
+  font-weight: 300;
+  color: var(--c-light);
+  margin-top: 2px;
+}
+
 /* The Place hero image: taller */
 .about-img-hero {
   height: clamp(380px, 45vw, 580px);
@@ -2480,7 +2551,131 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
       </div>
     </div>
 
+    <!-- ════════════════════════════════════════
+         PLACE HERO
+         图片已就位：assets/images/place/place-hero.JPG。onerror 兜底保留，
+         万一文件以后被移走/改名，不会显示破图标，只留空白色块。
+         ════════════════════════════════════════ -->
+    <div class="place-hero">
+      <div class="place-hero-photo">
+        <img src="assets/images/place/place-hero.JPG" alt="Kaaa Studio" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <p class="place-hero-caption">Every practice begins with a place.</p>
+    </div>
 
+    <!-- ════════════════════════════════════════
+         SPACES FOR PRACTICE
+         图片已就位（assets/images/place/ 下对应文件，见各条目 src）。onerror 兜底
+         保留，万一某张以后被移走/改名，不会显示破图标，只留空白色块，不影响版式。
+         ════════════════════════════════════════ -->
+    <div class="spaces-block">
+      <p class="spaces-eyebrow">Spaces for Practice</p>
+
+      <div class="space-entry">
+        <div class="space-head">
+          <span class="space-num">01</span>
+          <h3 class="space-name">Common Space</h3>
+        </div>
+        <div class="space-photo">
+          <img src="assets/images/place/01-common-space.jpg" alt="Common Space" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="space-caption">
+          <p class="space-line-en">Conversations begin here.</p>
+          <p class="space-line-en">Shared meals, discussions and everyday moments.</p>
+        </div>
+      </div>
+
+      <div class="space-entry">
+        <div class="space-head">
+          <span class="space-num">02</span>
+          <h3 class="space-name">Guest Residence</h3>
+        </div>
+        <div class="space-photo">
+          <img src="assets/images/place/02-guest-residence.jpg" alt="Guest Residence" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="space-caption">
+          <p class="space-line-en">A quiet place for visiting artists.</p>
+        </div>
+      </div>
+
+      <div class="space-entry">
+        <div class="space-head">
+          <span class="space-num">03</span>
+          <h3 class="space-name">Open Studio</h3>
+        </div>
+        <div class="space-photo">
+          <img src="assets/images/place/03-open-studio.jpg" alt="Open Studio" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="space-caption">
+          <p class="space-line-en">Where ideas become works.</p>
+        </div>
+      </div>
+
+      <div class="space-entry">
+        <div class="space-head">
+          <span class="space-num">04</span>
+          <h3 class="space-name">Kiln Room</h3>
+        </div>
+        <div class="space-photo">
+          <img src="assets/images/place/04-kiln-room.jpg" alt="Kiln Room" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="space-caption">
+          <p class="space-line-en">Glass meets fire.</p>
+        </div>
+      </div>
+
+      <div class="space-entry">
+        <div class="space-head">
+          <span class="space-num">05</span>
+          <h3 class="space-name">Cold Working Studio</h3>
+        </div>
+        <div class="space-photo">
+          <img src="assets/images/place/05-cold-working.jpg" alt="Cold Working Studio" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="space-caption">
+          <p class="space-line-en">Cut. Grind. Polish.</p>
+        </div>
+      </div>
+
+      <div class="space-entry">
+        <div class="space-head">
+          <span class="space-num">06</span>
+          <h3 class="space-name">Glass Powder Room</h3>
+        </div>
+        <div class="space-photo">
+          <img src="assets/images/place/06-glass-powder.jpg" alt="Glass Powder Room" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="space-caption">
+          <p class="space-line-en">For delicate material experiments.</p>
+        </div>
+      </div>
+
+      <div class="space-entry">
+        <div class="space-head">
+          <span class="space-num">07</span>
+          <h3 class="space-name">Material Storage</h3>
+        </div>
+        <div class="space-photo">
+          <img src="assets/images/place/07-material-storage.jpg" alt="Material Storage" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="space-caption">
+          <p class="space-line-en">Materials waiting for their next form.</p>
+        </div>
+      </div>
+
+      <div class="space-entry">
+        <div class="space-head">
+          <span class="space-num">08</span>
+          <h3 class="space-name">Exhibition Space</h3>
+        </div>
+        <div class="space-photo">
+          <img src="assets/images/place/08-exhibition-space.png" alt="Exhibition Space" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="space-caption">
+          <p class="space-line-en">Works meet people.</p>
+        </div>
+      </div>
+    </div>
 
 
 
