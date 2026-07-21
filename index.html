@@ -922,18 +922,13 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
 .chapter-desc { font-size:15px; color:var(--c-mid); line-height:1.8; max-width:var(--text-max); font-weight:300; }
 
 /* ═══ PEOPLE ═══ */
-.people-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px 60px; margin-top:32px; }
+.people-grid { display:grid; grid-template-columns:1fr; gap:64px; margin-top:32px; }
 .people-category { min-width:0; max-width:100%; }
 .people-cat-label {
   font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-light);
   padding-bottom:10px; border-bottom:0.5px solid var(--c-rule-md); margin-bottom:16px; font-weight:300;
 }
 .people-list { display:flex; flex-direction:column; gap:12px; min-width: 0; }
-.people-entry { display:grid; grid-template-columns:auto 1fr; grid-template-rows:auto auto; gap:1px 14px; font-size:13px; line-height:1.5; }
-.pe-name { font-weight:500; color:var(--c-ink); grid-column:1; grid-row:1; }
-.pe-period { font-size:10px; color:var(--c-light); letter-spacing:0.04em; grid-column:2; grid-row:1; padding-top:2px; font-weight:300; }
-.pe-note { font-size:12px; color:var(--c-light); grid-column:1/-1; grid-row:2; font-weight:300; }
-.people-empty { font-size:11px; color:var(--c-light); opacity:0.4; font-style:italic; letter-spacing:0.04em; font-weight:300; }
 
 /* ═══ WECHAT MODAL ═══ */
 .wechat-modal {
@@ -967,7 +962,7 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
   .path-grid { grid-template-columns:1fr; gap:24px; }
   .case-summary-grid { grid-template-columns:1fr; }
   .teacher-grid { grid-template-columns:1fr; }
-  .people-grid { grid-template-columns:1fr; gap:28px; }
+  .people-grid { gap:28px; }
   .photo-strip { grid-template-columns:1fr 1fr; }
   .photo-banner { height:280px; }
   .photo-banner-tall { height:360px; }
@@ -2110,11 +2105,6 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
   height: clamp(380px, 45vw, 580px);
 }
 
-/* People section: more generous spacing */
-.people-entry {
-  padding: 20px 0;
-}
-
 /* Projects: more whitespace */
 .proj-grid {
   gap: 32px;
@@ -2438,11 +2428,79 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
 .prac-detail { display: none; margin-top: 32px; }
 .prac-detail.open { display: block; }
 
+/* Resident Artist Profile — art-institution style, not a CV card */
+.resident-profile {
+  padding-top: 48px;
+  border-top: 0.5px solid var(--c-rule-md);
+}
+.resident-profile:first-child { padding-top: 0; border-top: none; }
+.resident-portrait {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 4 / 5;
+  background: var(--c-surface);
+  margin-bottom: 40px;
+}
+.resident-portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.resident-name {
+  font-family: var(--f-serif);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 300;
+  color: var(--c-ink);
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.resident-role {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-light);
+  margin-bottom: 10px;
+}
+.resident-born { font-size: 12px; color: var(--c-light); font-weight: 300; margin-bottom: 20px; }
+.resident-practice { font-size: 13px; color: var(--c-mid); font-weight: 300; margin-bottom: 40px; }
+.resident-bio { max-width: 560px; margin-bottom: 56px; }
+.resident-bio p { font-size: 14px; line-height: 2; color: var(--c-mid); font-weight: 300; margin-bottom: 18px; }
+.resident-bio p:last-child { margin-bottom: 0; }
+.resident-works-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-light);
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+/* Resident Artist works use the same horizontal-scroll strip as Workshop Teacher
+   (.teacher-works-scroll-wrap / .teacher-works-scroll, defined below with Yuan Fangzhou's
+   block) — this only relaxes the crop to object-fit:contain for illustration work,
+   scoped to .resident-profile so Yuan Fangzhou's own strip is untouched. */
+.resident-profile .teacher-works-scroll img { object-fit: contain; background: var(--c-surface); }
+.resident-education {
+  max-width: 480px;
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 0.5px solid var(--c-rule);
+}
+.resident-edu-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-light);
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+.resident-edu-entry { font-size: 12px; line-height: 1.75; color: var(--c-light); font-weight: 300; margin-bottom: 10px; }
+.resident-edu-entry:last-child { margin-bottom: 0; }
+.resident-current { margin-top: 22px; font-size: 12px; color: var(--c-light); font-weight: 300; }
+.resident-links { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 24px; }
+.resident-links-plain { font-size: 12px; color: var(--c-light); font-weight: 300; }
+/* image lightbox reused as-is from the case-study modal; this only relaxes the crop
+   for illustration work so nothing gets cut off — no new interaction, same overlay/close/scroll */
+.case-spread.case-spread--natural { aspect-ratio: auto; object-fit: contain; }
+
 /* Workshop Teacher Profile */
 .teacher-profile { padding: 24px 0; border-top: 0.5px solid var(--c-rule-md); overflow-x: hidden; max-width: 100%; min-width: 0; }
-.teacher-header { display: flex; align-items: baseline; gap: 20px; margin-bottom: 20px; }
 .teacher-name { font-size: 16px; font-weight: 500; color: var(--c-ink); }
-.teacher-role-tag { font-size: 10px; letter-spacing: 0.12em; color: var(--c-mid); text-transform: uppercase; }
 .teacher-works-scroll-wrap { height: 300px; max-width: 100%; min-width: 0; overflow-x: auto; overflow-y: hidden; margin-bottom: 24px; overscroll-behavior-x: contain; touch-action: pan-x; cursor: grab; scrollbar-width: thin; scrollbar-color: var(--c-rule-md) transparent; }
 .teacher-works-scroll-wrap.is-dragging { cursor: grabbing; user-select: none; }
 .teacher-works-scroll-wrap::-webkit-scrollbar { height: 3px; }
@@ -2466,10 +2524,8 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
   transition: all 0.2s ease;
 }
 .teacher-cv-toggle:hover { border-color: var(--c-ink); color: var(--c-ink); }
-.teacher-cv-toggle-arrow { display: inline-block; transition: transform 0.3s ease; }
-.teacher-cv-toggle[aria-expanded="true"] .teacher-cv-toggle-arrow { transform: rotate(180deg); }
-.teacher-cv-wrap { display: none; overflow: hidden; }
-.teacher-cv-wrap.open { display: block; }
+.resident-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 20px; }
+.resident-actions .teacher-cv-toggle { margin-top: 0; }
 </style>
 
 </head>
@@ -2851,6 +2907,194 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
     </div>
   </div>
 
+  <!-- CASE MODAL: 王雪曈 Wang Xuetong — Resident Artist Selected Works
+       Reuses the exact same case-overlay/case-modal/case-close open-close logic as the two
+       modals above. Only difference: case-spread--natural removes the forced 16:9 crop so
+       illustrations aren't cut off (see .case-spread.case-spread--natural in <style>). -->
+  <div class="case-overlay" id="caseOverlay3">
+    <div class="case-modal">
+      <button class="case-close" id="caseClose3">✕</button>
+      <p class="case-eyebrow">Resident Artist</p>
+      <div class="case-name">Wang Xuetong</div>
+      <div class="case-name-sub">王雪曈</div>
+      <hr class="case-divider">
+      <div class="resident-bio">
+        <p>Wang Xuetong is an illustrator whose practice explores narrative, memory and everyday observations through drawing.</p>
+        <p>She received her B.A. in Environmental Design from Sichuan University and later completed her M.F.A. in Illustration Practice at the Maryland Institute College of Art (MICA), USA.</p>
+        <p>She currently works as a freelance illustrator.</p>
+      </div>
+      <p class="case-works-label">Selected Works — 20 pieces</p>
+
+      <img src="assets/images/people/xuetong-wang/work-04.jpg" alt="Wang Xuetong — lululemon Capsule Installation" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <img src="assets/images/people/xuetong-wang/work-16.jpg" alt="Wang Xuetong — the barrrk, About Us page" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-13.jpg" alt="Wang Xuetong — the barrrk, homepage" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-14.jpg" alt="Wang Xuetong — the barrrk, collection page" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-15.jpg" alt="Wang Xuetong — the barrrk, product page" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <img src="assets/images/people/xuetong-wang/work-10.jpg" alt="Wang Xuetong — Marimekko Aureate Glow" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-11.jpg" alt="Wang Xuetong — Marimekko Aureate Glow, detail" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <img src="assets/images/people/xuetong-wang/work-13.png" alt="Wang Xuetong — Stationery Illustration" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <img src="assets/images/people/xuetong-wang/work-17.jpeg" alt="Wang Xuetong — Holiday Calendar Illustration" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <img src="assets/images/people/xuetong-wang/work-09.png" alt="Wang Xuetong — Marimekko Campaign" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-12.png" alt="Wang Xuetong — Marimekko Campaign, alternate" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <img src="assets/images/people/xuetong-wang/work-03.jpg" alt="Wang Xuetong — lululemon Yoga Alphabet, installation view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-01.jpg" alt="Wang Xuetong — lululemon Yoga Alphabet, detail" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-02.jpg" alt="Wang Xuetong — lululemon Yoga Alphabet, detail" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-05.jpg" alt="Wang Xuetong — lululemon Yoga Alphabet, on skin" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-07.jpg" alt="Wang Xuetong — lululemon Yoga Alphabet, on merchandise" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <img src="assets/images/people/xuetong-wang/work-17.jpg" alt="Wang Xuetong — Holiday Card Design" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <img src="assets/images/people/xuetong-wang/work-06.jpg" alt="Wang Xuetong — lululemon Wellbeing Art Program campaign" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-08.jpg" alt="Wang Xuetong — lululemon Wellbeing Art Program campaign" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/xuetong-wang/work-09.jpg" alt="Wang Xuetong — lululemon Wellbeing Art Program campaign" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <hr class="case-divider">
+      <div class="resident-education">
+        <p class="resident-edu-label">Education</p>
+        <p class="resident-edu-entry">2014–2018 · B.A. Environmental Design · Sichuan University</p>
+        <p class="resident-edu-entry">2018–2020 · M.F.A. Illustration Practice · Maryland Institute College of Art (MICA)</p>
+        <p class="resident-current">Current — Freelance Illustrator</p>
+      </div>
+      <div class="resident-links">
+        <a class="about-nav-link" href="https://tongw.me" target="_blank" rel="noopener noreferrer">Website ↗</a>
+        <a class="about-nav-link" href="https://instagram.com/xuetong_wang_" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+        <span class="resident-links-plain">Xiaohongshu · 王雪曈Tong</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE MODAL: Chen Cheng — Resident Artist Selected Works
+       Same case-overlay/case-modal/case-close reuse as caseOverlay3 above. All 12 works,
+       in filename order (already naturally grouped by piece — see comment near resident-profile). -->
+  <div class="case-overlay" id="caseOverlay4">
+    <div class="case-modal">
+      <button class="case-close" id="caseClose4">✕</button>
+      <p class="case-eyebrow">Resident Artist</p>
+      <div class="case-name">Chen Cheng</div>
+      <div class="case-name-sub">陈骋</div>
+      <hr class="case-divider">
+      <div class="resident-bio">
+        <p>Chen Cheng is a glass artist whose practice explores the invisible distance between people through the materiality of glass.</p>
+        <p>Working with transparency, fragility and light, Chen creates works that reflect subtle emotional states hidden within human relationships. Through shifting reflections, soft shadows and delicate surfaces, the work invites viewers to contemplate loneliness, resonance and the quiet tension between connection and distance.</p>
+        <p>Glass becomes both a boundary and a bridge — fragile when touched, reflective when separated. Within this contradiction, Chen seeks to reveal the warmth that exists inside apparent coldness and the gentle light concealed within transparent matter.</p>
+      </div>
+      <p class="case-works-label">Selected Works — 12 pieces</p>
+      <img src="assets/images/people/chen-cheng/work-01.png" alt="Chen Cheng — crystalline vessel form, front view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-02.jpg" alt="Chen Cheng — crystalline vessel form, detail" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-03.jpg" alt="Chen Cheng — concrete and glass sculpture" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-04.png" alt="Chen Cheng — glass material tests" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-05.jpg" alt="Chen Cheng — concrete and glass sculpture, alternate form" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-06.JPG" alt="Chen Cheng — crystalline ridge form" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-07.JPG" alt="Chen Cheng — crystalline ridge form, front view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-08.JPG" alt="Chen Cheng — crystalline ridge form, detail" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-09.JPG" alt="Chen Cheng — dark stacked dome sculpture" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-10.JPG" alt="Chen Cheng — dark stacked dome sculpture, detail" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-11.JPG" alt="Chen Cheng — pastel organic glass forms" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/chen-cheng/work-12.JPG" alt="Chen Cheng — pastel organic glass form, detail" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <hr class="case-divider">
+      <div class="resident-education">
+        <p class="resident-edu-label">Selected Exhibitions</p>
+        <p class="resident-edu-entry">2024 · "Wujie Ximei" · Xi'an Academy of Fine Arts Graduation Exhibition</p>
+        <p class="resident-edu-entry">2024 · "Traces of Light" · MoMo Park Art Plaza</p>
+        <p class="resident-edu-entry">2023 · Xi'an Academy of Fine Arts Art Festival</p>
+        <p class="resident-edu-entry">2023 · "Sound of Transparency" · Glass Exhibition</p>
+        <p class="resident-edu-entry">2022 · "Flowing Forms" · Glass Art Exhibition</p>
+        <p class="resident-edu-entry">2022 · Kiln Glass Exhibition · Xi'an Academy of Fine Arts</p>
+
+        <p class="resident-edu-label" style="margin-top:32px">Education</p>
+        <p class="resident-edu-entry">2024 · B.A. Glass Art · Xi'an Academy of Fine Arts</p>
+        <p class="resident-edu-entry">2020 · Entered Glass Art Program · Xi'an Academy of Fine Arts</p>
+        <p class="resident-edu-entry">Born 2002 · Zhejiang, China</p>
+      </div>
+      <div class="resident-links">
+        <span class="resident-links-plain">Website · Coming Soon</span>
+        <span class="resident-links-plain">Instagram · Coming Soon</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE MODAL: Yuan Fangzhou — Workshop Teacher Selected Works
+       Same case-overlay/case-modal/case-close reuse as caseOverlay3/4 above. All 15 valid
+       work files in the folder (work-1..17; work-12 and work-14 were never present), in
+       filename numeric order. case-spread--natural keeps his gallery photography uncropped,
+       same reasoning as the two Resident Artist modals. -->
+  <div class="case-overlay" id="caseOverlay5">
+    <div class="case-modal">
+      <button class="case-close" id="caseClose5">✕</button>
+      <p class="case-eyebrow">Workshop Teacher</p>
+      <div class="case-name">Yuan Fangzhou</div>
+      <div class="case-name-sub">袁方洲</div>
+      <hr class="case-divider">
+      <p class="case-works-label">Selected Works — 15 pieces</p>
+      <img src="assets/images/people/yuan-fangzhou/work-1.jpg" alt="Yuan Fangzhou — exhibition view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-2.jpg" alt="Yuan Fangzhou — exhibition view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-3.jpg" alt="Yuan Fangzhou — representative work" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-4.jpg" alt="Yuan Fangzhou — latest work" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-5.JPG" alt="Yuan Fangzhou — representative work" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-6.JPG" alt="Yuan Fangzhou — new series" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-7.JPG" alt="Yuan Fangzhou — material detail" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-8.JPG" alt="Yuan Fangzhou — new series, alternate view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-9.jpg" alt="Yuan Fangzhou — exhibition view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-10.jpg" alt="Yuan Fangzhou — exhibition view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-11.jpg" alt="Yuan Fangzhou — exhibition view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-13.jpg" alt="Yuan Fangzhou — representative work" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-15.jpg" alt="Yuan Fangzhou — exhibition view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-16.JPG" alt="Yuan Fangzhou — exhibition view" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+      <img src="assets/images/people/yuan-fangzhou/work-17.jpg" alt="Yuan Fangzhou — representative work" class="case-spread case-spread--natural" loading="lazy" onerror="this.style.display='none'">
+
+      <hr class="case-divider">
+      <div class="teacher-cv">
+        <div class="teacher-cv-section" style="grid-column:1/-1">
+          <div class="teacher-cv-label">経歴</div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">1995</span><span class="teacher-cv-text">中国遼寧省生まれ</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2018</span><span class="teacher-cv-text">清華大学美術学院 工芸学科ガラス専攻卒業</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">東京藝術大学大学院美術研究科 工芸専攻 陶芸（陶・磁・ガラス造形）研究分野 修士課程修了</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2021–</span><span class="teacher-cv-text">東京藝術大学大学院美術研究科 工芸専攻 陶芸（陶・磁・ガラス造形）研究分野 博士後期課程在籍</span></div>
+        </div>
+        <div class="teacher-cv-section">
+          <div class="teacher-cv-label">個展</div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">「虚実体 The nonentity within the entity」（デカメロン 東京）</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">「中間体ー intermediary compound ー」（Tokyo International Gallery 東京）</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2023</span><span class="teacher-cv-text">無の反対側 Presence and Absence（ars gallery 東京）</span></div>
+        </div>
+        <div class="teacher-cv-section">
+          <div class="teacher-cv-label">受賞歴</div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2017</span><span class="teacher-cv-text">第三回「薪技芸・霊」国際青年工芸美術展 受賞</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2018</span><span class="teacher-cv-text">第14回 大分アジア彫刻展 優秀賞</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">東京藝術大学原田賞奨学基金 受賞</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">第1回宮若国際芸術トリエンナーレ トライアート 入賞</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">第21回 AAC2021 優秀賞</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2022</span><span class="teacher-cv-text">第22回 AAC2022 優秀賞</span></div>
+        </div>
+        <div class="teacher-cv-section" style="grid-column:1/-1">
+          <div class="teacher-cv-label">主な展示</div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2017</span><span class="teacher-cv-text">「Junior Glass Ways」国際ガラスアートコンベ入選作品展覧会（チェコ共和国）／若手工芸作家国際展 第三回薪技芸・霊（上海）／第２回杭州国際現代ガラストリエンナーレ（中国美術学院 杭州）</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2018</span><span class="teacher-cv-text">「Blue Coast」煙台現代美術展（煙台市立美術館）／清華大学美術学院卒業制作展（清華大学美術館 北京）／第14回大分アジア彫刻展（大分）／若手工芸作家国際展 第四回薪技芸・燦（バングラデシュ）</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2020</span><span class="teacher-cv-text">第14回藝大アートプラザ大賞展（東京）／「Glass Wonderland」東京藝術大学ガラス造形研究室展／第８回現代ガラス展 in 山陽小野田</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">第69回東京藝術大学卒業・修了作品展（東京藝術大学大学美術館）／第24回岡本太郎現代芸術賞展（川崎）／KUMA EXHIBITION 2021（東京）／のせでんアートライン2021（静思館 兵庫）</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2022</span><span class="teacher-cv-text">KUMA EXHIBITION 2022（ANB Tokyo）／第16回大分アジア彫刻展（大分）</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2023</span><span class="teacher-cv-text">ARTISTS' FAIR KYOTO 2023（京都文化博物館）</span></div>
+        </div>
+        <div class="teacher-cv-section">
+          <div class="teacher-cv-label">収蔵</div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year"></span><span class="teacher-cv-text">中国外務省（北京）／朝倉文夫記念文化ホール（大分）／株式会社アーバネットコーポレーション（東京）</span></div>
+        </div>
+        <div class="teacher-cv-section">
+          <div class="teacher-cv-label">掲載</div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2017</span><span class="teacher-cv-text">薪技芸・霊 — 人民郵電出版社</span></div>
+          <div class="teacher-cv-entry"><span class="teacher-cv-year">2019</span><span class="teacher-cv-text">中国彫刻年鑑 — 中国彫刻雑誌社刊</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <!-- 02 海外入住 -->
   <div class="section" id="s07" data-num="02">
@@ -2930,10 +3174,10 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
       </div>
       <h2 class="card-title">窑炉烧制使用</h2>
       <p class="card-sub">玻璃料、设备，和一整个下午不被打扰的自由。</p>
-      <!-- photo_07.jpg=CERAMICA彩色窑炉全景  photo_06.jpg=黑白窑炉空间+储架 -->
+      <!-- photo_07.jpg=CERAMICA彩色窑炉全景  practices-27.jpg=CERAMICA窑炉铭牌与滑轮细节 -->
       <div class="photo-two">
         <img src="assets/images/handbook/photo-07.jpg" alt="CERAMICA窑炉">
-        <img src="assets/images/handbook/handbook-03.jpg" alt="窑炉工坊">
+        <img src="assets/images/practices/practices-27.jpg" alt="CERAMICA窑炉铭牌与滑轮细节">
       </div>
       <div class="hq">专业级的烧制环境，是作品走向完整的最后一步。</div>
 
@@ -3489,106 +3733,131 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
         <div class="people-category">
           <div class="people-cat-label">Resident</div>
           <div class="people-list" id="people-resident">
-            <div class="people-entry">
-              <span class="pe-name">陳騁 · Chen Cheng</span>
-              <span class="pe-period">2025–2026</span>
-              <span class="pe-note">Glass · 人と人のあいだを、ガラスで形にする</span>
-            </div>
-          </div>
-        </div>
+            <!-- Upgraded from the old one-line people-entry to the full Resident Artist template,
+                 same structure/classes as Wang Xuetong below. Selected Works: all 12 valid files in
+                 assets/images/people/chen-cheng/ (work-01..work-12), none excluded — verified by MD5
+                 that none are byte-duplicates. portrait.jpg is used only in .resident-portrait, not
+                 counted as a work. The folder also has pre-existing case-chen-*.jpg files used by the
+                 separate student-case modal (#caseOverlay) elsewhere in the page — untouched, unrelated. -->
+            <div class="resident-profile">
+              <div class="resident-portrait">
+                <img src="assets/images/people/chen-cheng/portrait.jpg" alt="Chen Cheng" loading="lazy" onerror="this.style.display='none'">
+              </div>
+              <h3 class="resident-name">Chen Cheng <span style="font-weight:300">· 陈骋</span></h3>
+              <p class="resident-role">Resident Artist · Glass</p>
+              <p class="resident-practice">Glass Art · Installation · Material Research</p>
 
-        <div class="people-category">
-          <div class="people-cat-label">Artist</div>
-          <div class="people-list" id="people-artist">
-            <!-- PEOPLE_TODO: 添加在此创作的艺术家记录（真实身份确认后填入）-->
-            <div class="people-empty">记录建立中</div>
+              <p class="resident-works-label">Selected Works</p>
+              <div class="teacher-works-scroll-wrap">
+                <div class="teacher-works-scroll">
+                  <img src="assets/images/people/chen-cheng/work-01.png" alt="Chen Cheng — crystalline vessel form, front view" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-02.jpg" alt="Chen Cheng — crystalline vessel form, detail" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-03.jpg" alt="Chen Cheng — concrete and glass sculpture" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-04.png" alt="Chen Cheng — glass material tests" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-05.jpg" alt="Chen Cheng — concrete and glass sculpture, alternate form" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-06.JPG" alt="Chen Cheng — crystalline ridge form" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-07.JPG" alt="Chen Cheng — crystalline ridge form, front view" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-08.JPG" alt="Chen Cheng — crystalline ridge form, detail" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-09.JPG" alt="Chen Cheng — dark stacked dome sculpture" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-10.JPG" alt="Chen Cheng — dark stacked dome sculpture, detail" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-11.JPG" alt="Chen Cheng — pastel organic glass forms" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/chen-cheng/work-12.JPG" alt="Chen Cheng — pastel organic glass form, detail" loading="lazy" onerror="this.style.display='none'">
+                </div>
+              </div>
+              <div class="resident-actions">
+                <button class="teacher-cv-toggle" id="openWorksBtn4">
+                  <span class="teacher-cv-toggle-label">View Selected Works</span>
+                  <span class="teacher-cv-toggle-arrow">↗</span>
+                </button>
+                <button class="teacher-cv-toggle" id="openCaseBtn4">
+                  <span class="teacher-cv-toggle-label">View Full Profile</span>
+                  <span class="teacher-cv-toggle-arrow">↗</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="resident-profile">
+              <div class="resident-portrait">
+                <img src="assets/images/people/xuetong-wang/portrait.jpg" alt="Wang Xuetong" loading="lazy" onerror="this.style.display='none'">
+              </div>
+              <h3 class="resident-name">Wang Xuetong <span style="font-weight:300">· 王雪曈</span></h3>
+              <p class="resident-role">Resident Artist · Illustrator</p>
+              <p class="resident-born">Born 1996</p>
+              <p class="resident-practice">Illustration · Drawing · Publishing</p>
+
+              <p class="resident-works-label">Selected Works</p>
+              <!-- Curated 8 of 20 valid works — chosen for stylistic/medium/orientation/color variety,
+                   not filename order. Excludes portrait.jpg, portrait_副本.jpg (duplicate),
+                   and 20260512_lululemon_2255.jpg (a product photo, not one of her illustrations). -->
+              <div class="teacher-works-scroll-wrap">
+                <div class="teacher-works-scroll">
+                  <img src="assets/images/people/xuetong-wang/work-04.jpg" alt="Wang Xuetong — lululemon Capsule Installation" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/xuetong-wang/work-16.jpg" alt="Wang Xuetong — the barrrk" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/xuetong-wang/work-10.jpg" alt="Wang Xuetong — Marimekko Aureate Glow" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/xuetong-wang/work-13.png" alt="Wang Xuetong — Stationery Illustration" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/xuetong-wang/work-17.jpeg" alt="Wang Xuetong — Holiday Calendar Illustration" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/xuetong-wang/work-09.png" alt="Wang Xuetong — Marimekko Campaign" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/xuetong-wang/work-03.jpg" alt="Wang Xuetong — lululemon Yoga Alphabet" loading="lazy" onerror="this.style.display='none'">
+                  <img src="assets/images/people/xuetong-wang/work-17.jpg" alt="Wang Xuetong — Holiday Card Design" loading="lazy" onerror="this.style.display='none'">
+                </div>
+              </div>
+              <div class="resident-actions">
+                <button class="teacher-cv-toggle" id="openWorksBtn3">
+                  <span class="teacher-cv-toggle-label">View Selected Works</span>
+                  <span class="teacher-cv-toggle-arrow">↗</span>
+                </button>
+                <button class="teacher-cv-toggle" id="openCaseBtn3">
+                  <span class="teacher-cv-toggle-label">View Full Profile</span>
+                  <span class="teacher-cv-toggle-arrow">↗</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="people-category">
           <div class="people-cat-label">Workshop Teacher</div>
           <div class="people-list" id="people-teacher">
+            <!-- IMAGE_TODO: assets/images/people/yuan-fangzhou/portrait.jpg does not exist yet
+                 (folder only has work-1..17, no portrait file) — onerror hides the img so this
+                 just stays an empty area until the file is placed, no broken icon, no error. -->
             <div class="teacher-profile">
-              <div class="teacher-header">
-                <span class="teacher-name">袁方洲 · Yuan Fangzhou</span>
-                <span class="teacher-role-tag">Workshop Teacher · Glass &amp; Material</span>
+              <div class="resident-portrait">
+                <img src="assets/images/people/yuan-fangzhou/portrait.jpg" alt="Yuan Fangzhou" loading="lazy" onerror="this.style.display='none'">
               </div>
-              <div id="teacher-works-wrap" class="teacher-works-scroll-wrap">
-                <div class="teacher-works-scroll" id="teacher-works-scroll">
-                  <img src="assets/images/people/yuan-fangzhou/people-yuan-fangzhou-01.jpg" alt="Yuan Fangzhou artwork 1" loading="lazy">
-                  <img src="assets/images/people/yuan-fangzhou/people-yuan-fangzhou-02.jpg" alt="Yuan Fangzhou artwork 2" loading="lazy">
-                  <img src="assets/images/people/yuan-fangzhou/people-yuan-fangzhou-03.jpg" alt="Yuan Fangzhou artwork 3" loading="lazy">
-                  <img src="assets/images/people/yuan-fangzhou/people-yuan-fangzhou-04.jpg" alt="Yuan Fangzhou artwork 4" loading="lazy">
-                  <img src="assets/images/people/yuan-fangzhou/people-yuan-fangzhou-05.jpg" alt="Yuan Fangzhou artwork 5" loading="lazy">
-                  <img src="assets/images/people/yuan-fangzhou/people-yuan-fangzhou-06.jpg" alt="Yuan Fangzhou artwork 6" loading="lazy">
-                  <img src="assets/images/people/yuan-fangzhou/people-yuan-fangzhou-07.jpg" alt="Yuan Fangzhou artwork 7" loading="lazy">
-                </div>
-              </div>
-              <button class="teacher-cv-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='true'?'false':'true'); this.querySelector('.teacher-cv-toggle-label').textContent = this.getAttribute('aria-expanded')==='true'?'收起履歴':'查看完整履歴'; this.closest('.teacher-profile').querySelector('.teacher-cv-wrap').classList.toggle('open');">
-                <span class="teacher-cv-toggle-label">查看完整履歴</span>
-                <span class="teacher-cv-toggle-arrow">↓</span>
-              </button>
-              <div class="teacher-cv-wrap">
-              <div class="teacher-cv">
-                <div class="teacher-cv-section" style="grid-column:1/-1">
-                  <div class="teacher-cv-label">経歴</div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">1995</span><span class="teacher-cv-text">中国遼寧省生まれ</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2018</span><span class="teacher-cv-text">清華大学美術学院 工芸学科ガラス専攻卒業</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">東京藝術大学大学院美術研究科 工芸専攻 陶芸（陶・磁・ガラス造形）研究分野 修士課程修了</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2021–</span><span class="teacher-cv-text">東京藝術大学大学院美術研究科 工芸専攻 陶芸（陶・磁・ガラス造形）研究分野 博士後期課程在籍</span></div>
-                </div>
-                <div class="teacher-cv-section">
-                  <div class="teacher-cv-label">個展</div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">「虚実体 The nonentity within the entity」（デカメロン 東京）</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">「中間体ー intermediary compound ー」（Tokyo International Gallery 東京）</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2023</span><span class="teacher-cv-text">無の反対側 Presence and Absence（ars gallery 東京）</span></div>
-                </div>
-                <div class="teacher-cv-section">
-                  <div class="teacher-cv-label">受賞歴</div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2017</span><span class="teacher-cv-text">第三回「薪技芸・霊」国際青年工芸美術展 受賞</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2018</span><span class="teacher-cv-text">第14回 大分アジア彫刻展 優秀賞</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">東京藝術大学原田賞奨学基金 受賞</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">第1回宮若国際芸術トリエンナーレ トライアート 入賞</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">第21回 AAC2021 優秀賞</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2022</span><span class="teacher-cv-text">第22回 AAC2022 優秀賞</span></div>
-                </div>
-                <div class="teacher-cv-section" style="grid-column:1/-1">
-                  <div class="teacher-cv-label">主な展示</div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2017</span><span class="teacher-cv-text">「Junior Glass Ways」国際ガラスアートコンベ入選作品展覧会（チェコ共和国）／若手工芸作家国際展 第三回薪技芸・霊（上海）／第２回杭州国際現代ガラストリエンナーレ（中国美術学院 杭州）</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2018</span><span class="teacher-cv-text">「Blue Coast」煙台現代美術展（煙台市立美術館）／清華大学美術学院卒業制作展（清華大学美術館 北京）／第14回大分アジア彫刻展（大分）／若手工芸作家国際展 第四回薪技芸・燦（バングラデシュ）</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2020</span><span class="teacher-cv-text">第14回藝大アートプラザ大賞展（東京）／「Glass Wonderland」東京藝術大学ガラス造形研究室展／第８回現代ガラス展 in 山陽小野田</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2021</span><span class="teacher-cv-text">第69回東京藝術大学卒業・修了作品展（東京藝術大学大学美術館）／第24回岡本太郎現代芸術賞展（川崎）／KUMA EXHIBITION 2021（東京）／のせでんアートライン2021（静思館 兵庫）</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2022</span><span class="teacher-cv-text">KUMA EXHIBITION 2022（ANB Tokyo）／第16回大分アジア彫刻展（大分）</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2023</span><span class="teacher-cv-text">ARTISTS' FAIR KYOTO 2023（京都文化博物館）</span></div>
-                </div>
-                <div class="teacher-cv-section">
-                  <div class="teacher-cv-label">収蔵</div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year"></span><span class="teacher-cv-text">中国外務省（北京）／朝倉文夫記念文化ホール（大分）／株式会社アーバネットコーポレーション（東京）</span></div>
-                </div>
-                <div class="teacher-cv-section">
-                  <div class="teacher-cv-label">掲載</div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2017</span><span class="teacher-cv-text">薪技芸・霊 — 人民郵電出版社</span></div>
-                  <div class="teacher-cv-entry"><span class="teacher-cv-year">2019</span><span class="teacher-cv-text">中国彫刻年鑑 — 中国彫刻雑誌社刊</span></div>
+              <h3 class="resident-name">Yuan Fangzhou <span style="font-weight:300">· 袁方洲</span></h3>
+              <p class="resident-role">Workshop Teacher</p>
+              <p class="resident-practice">Glass &amp; Material</p>
+              <!-- Selected Works strip — curated 8 of 15 valid files (work-1..17, missing 12 and 14
+                   were never in the folder), reordered by visual rhythm, not filename order:
+                   ① exhibition site (16) ② representative (3) ③ representative (17)
+                   ④ material detail (7) ⑤ new series (6) ⑥ exhibition site (15)
+                   ⑦ representative (13) ⑧ latest work (4 — file date Aug 2025, same shoot as 1-3,
+                   the most recent dated files in the folder by a wide margin). Full 15-image
+                   set lives in the "View Selected Works" modal below. -->
+              <div class="teacher-works-scroll-wrap">
+                <div class="teacher-works-scroll">
+                  <img src="assets/images/people/yuan-fangzhou/work-16.JPG" alt="Yuan Fangzhou — exhibition view" loading="lazy">
+                  <img src="assets/images/people/yuan-fangzhou/work-3.jpg" alt="Yuan Fangzhou — representative work" loading="lazy">
+                  <img src="assets/images/people/yuan-fangzhou/work-17.jpg" alt="Yuan Fangzhou — representative work" loading="lazy">
+                  <img src="assets/images/people/yuan-fangzhou/work-7.JPG" alt="Yuan Fangzhou — material detail" loading="lazy">
+                  <img src="assets/images/people/yuan-fangzhou/work-6.JPG" alt="Yuan Fangzhou — new series" loading="lazy">
+                  <img src="assets/images/people/yuan-fangzhou/work-15.jpg" alt="Yuan Fangzhou — exhibition view" loading="lazy">
+                  <img src="assets/images/people/yuan-fangzhou/work-13.jpg" alt="Yuan Fangzhou — representative work" loading="lazy">
+                  <img src="assets/images/people/yuan-fangzhou/work-4.jpg" alt="Yuan Fangzhou — latest work" loading="lazy">
                 </div>
               </div>
-              </div><!-- /teacher-cv-wrap -->
+              <div class="resident-actions">
+                <button class="teacher-cv-toggle" id="openWorksBtn5">
+                  <span class="teacher-cv-toggle-label">View Selected Works</span>
+                  <span class="teacher-cv-toggle-arrow">↗</span>
+                </button>
+                <button class="teacher-cv-toggle" id="openCaseBtn5">
+                  <span class="teacher-cv-toggle-label">View Full Profile</span>
+                  <span class="teacher-cv-toggle-arrow">↗</span>
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div class="people-category">
-          <div class="people-cat-label">Visiting Artist</div>
-          <div class="people-list" id="people-visiting">
-            <!-- PEOPLE_TODO: 添加访问艺术家记录 -->
-            <div class="people-empty">记录建立中</div>
-          </div>
-        </div>
-
-        <div class="people-category">
-          <div class="people-cat-label">Collaborator</div>
-          <div class="people-list" id="people-collab">
-            <!-- PEOPLE_TODO: 添加合作者记录 -->
-            <div class="people-empty">记录建立中</div>
           </div>
         </div>
 
@@ -4626,12 +4895,11 @@ navItems.forEach(item => item.addEventListener('click', () => showSection(item.d
 document.querySelectorAll('.ov-card').forEach(c => c.addEventListener('click', () => showSection(c.dataset.goto)));
 document.querySelectorAll('.entry-card').forEach(c => c.addEventListener('click', () => showSection(c.dataset.goto)));
 
-// Teacher works strip — vertical wheel scrolls horizontally (trackpad swipe and shift+wheel already scroll
-// horizontally natively); mouse-only drag-to-scroll as a supplement.
-(function() {
-  const wrap = document.getElementById('teacher-works-wrap');
-  if (!wrap) return;
-
+// Works strip (Yuan Fangzhou + every Resident Artist) — vertical wheel scrolls horizontally
+// (trackpad swipe and shift+wheel already scroll horizontally natively); mouse-only
+// drag-to-scroll as a supplement. Applied to every .teacher-works-scroll-wrap instance,
+// so all resident artists share this exact same interaction, not a duplicated one-off.
+document.querySelectorAll('.teacher-works-scroll-wrap').forEach((wrap) => {
   wrap.addEventListener('wheel', (e) => {
     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
       wrap.scrollLeft += e.deltaY;
@@ -4658,7 +4926,7 @@ document.querySelectorAll('.entry-card').forEach(c => c.addEventListener('click'
   wrap.addEventListener('pointerup', endDrag);
   wrap.addEventListener('pointercancel', endDrag);
   wrap.addEventListener('pointerleave', endDrag);
-})();
+});
 
 // Case modal
 const caseOverlay = document.getElementById('caseOverlay');
@@ -4689,6 +4957,65 @@ document.getElementById('caseClose2').addEventListener('click', () => {
 caseOverlay2.addEventListener('click', e => {
   if (e.target === caseOverlay2) {
     caseOverlay2.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// Shared open logic for the three Artist Profile overlays. "View Selected Works" opens the
+// same overlay as "View Full Profile" (no second modal — just the one already there) and
+// additionally scrolls straight to the works section inside it; "View Full Profile" opens
+// at the top (Biography first). Same overlay/close/backdrop-click logic as before, just
+// factored out once instead of repeated per overlay.
+function openArtistOverlay(overlay, scrollToWorks) {
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  var modal = overlay.querySelector('.case-modal');
+  if (scrollToWorks) {
+    var label = overlay.querySelector('.case-works-label');
+    if (label) requestAnimationFrame(() => label.scrollIntoView());
+  } else if (modal) {
+    modal.scrollTop = 0;
+  }
+}
+
+const caseOverlay3 = document.getElementById('caseOverlay3');
+document.getElementById('openWorksBtn3').addEventListener('click', () => openArtistOverlay(caseOverlay3, true));
+document.getElementById('openCaseBtn3').addEventListener('click', () => openArtistOverlay(caseOverlay3, false));
+document.getElementById('caseClose3').addEventListener('click', () => {
+  caseOverlay3.classList.remove('open');
+  document.body.style.overflow = '';
+});
+caseOverlay3.addEventListener('click', e => {
+  if (e.target === caseOverlay3) {
+    caseOverlay3.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+const caseOverlay4 = document.getElementById('caseOverlay4');
+document.getElementById('openWorksBtn4').addEventListener('click', () => openArtistOverlay(caseOverlay4, true));
+document.getElementById('openCaseBtn4').addEventListener('click', () => openArtistOverlay(caseOverlay4, false));
+document.getElementById('caseClose4').addEventListener('click', () => {
+  caseOverlay4.classList.remove('open');
+  document.body.style.overflow = '';
+});
+caseOverlay4.addEventListener('click', e => {
+  if (e.target === caseOverlay4) {
+    caseOverlay4.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+const caseOverlay5 = document.getElementById('caseOverlay5');
+document.getElementById('openWorksBtn5').addEventListener('click', () => openArtistOverlay(caseOverlay5, true));
+document.getElementById('openCaseBtn5').addEventListener('click', () => openArtistOverlay(caseOverlay5, false));
+document.getElementById('caseClose5').addEventListener('click', () => {
+  caseOverlay5.classList.remove('open');
+  document.body.style.overflow = '';
+});
+caseOverlay5.addEventListener('click', e => {
+  if (e.target === caseOverlay5) {
+    caseOverlay5.classList.remove('open');
     document.body.style.overflow = '';
   }
 });
