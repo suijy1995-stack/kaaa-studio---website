@@ -951,7 +951,7 @@ button[disabled],button[aria-disabled="true"] { opacity:0.25; cursor:not-allowed
 @media(max-width:1100px) {
   :root { --page-pad:48px; }
   .hero { grid-template-columns:1fr; min-height:auto; }
-  .hero-img { display:none; }
+  .hero-img { display:block; margin-right:0; }
   .hero-text { padding-right:0; padding-bottom:48px; }
   .ov-grid { grid-template-columns:repeat(2,1fr); }
 }
@@ -4875,6 +4875,22 @@ function imgRevealScroll(el, targetId) {
     window.scrollTo({ top: rect.top + window.scrollY - navH - 16, behavior: 'smooth' });
   }, 250);
 }
+
+
+// Grayscale → color reveal is implemented with :hover/:active in CSS, which
+// never fires on touch devices. On devices with no real hover (phones/tablets),
+// mirror the same effect with a tap toggle instead, reusing the existing
+// .img-color-lock class (already used by imgRevealScroll for the permanent-lock case).
+(function initTouchColorReveal() {
+  if (!window.matchMedia || !window.matchMedia('(hover: none)').matches) return;
+  var REVEAL_SELECTOR = '.section img, .hero-img img, .proj-img-wrap img, .about-img-placeholder img';
+  document.addEventListener('click', function (e) {
+    var img = e.target.closest && e.target.closest('img');
+    if (!img || !img.matches(REVEAL_SELECTOR)) return;
+    if (img.closest('.photo-click-reveal')) return; // already handled by imgRevealScroll (permanent lock)
+    img.classList.toggle('img-color-lock');
+  });
+})();
 
 
 function openDeepTime() {
